@@ -98,7 +98,7 @@ jobs:
           git add -A
           git commit -m "chore(firefox-addons): update some addons"
           git checkout -B firefox-addons
-          git push origin firefox-addons
+          git push origin firefox-addons --force
           if [ -z "$(git diff origin/firefox-addons origin/master)" ]; then
             echo "skip=true" >> "$GITHUB_OUTPUT"
           fi
@@ -134,7 +134,7 @@ jobs:
           git add -A
           git commit -m "chore(lockfile): Update flake.lock"
           git checkout -B nightly-update
-          git push origin nightly-update
+          git push origin nightly-update --force
           if [ -z "$(git diff origin/nightly-update origin/master)" ]; then
             echo "skip=true" >> "$GITHUB_OUTPUT"
           fi
