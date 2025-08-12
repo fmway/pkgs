@@ -24,7 +24,7 @@ jobs:
     # if: "${{ github.event_name == 'pull_request' }}"
     runs-on: [ubuntu-latest]
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - uses: DeterminateSystems/nix-installer-action@main
       with:
         github-token: ${{ secrets.GH_TOKEN }}
@@ -42,7 +42,7 @@ jobs:
     # if: "${{ github.event.head_commit.author.name != 'Bot' && (github.event.head_commit.message == 'chore(lockfile): update flake.lock' || github.event.head_commit.message == 'chore(deps): update flake.lock' || github.event.head_commit.message == '(lock:update) flake.lock') }}"
     runs-on: [ubuntu-latest]
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         ref: ${{ github.head_ref }}
     - name: Setup git
@@ -78,7 +78,7 @@ jobs:
     runs-on: [ubuntu-latest]
     if: ${{ github.event_name != 'pull_request' && github.ref_name != 'firefox-addons' && (github.event.head_commit.author.name == 'fmway' || (github.event_name == 'schedule' && github.event.schedule == '0 12 * * *') || github.event_name == 'workflow_dispatch') }}
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         ref: ${{ github.head_ref }}
     - name: Setup git
@@ -113,7 +113,7 @@ jobs:
     runs-on: [ubuntu-latest]
     if: ${{ github.event_name != 'pull_request' && github.ref_name != 'nightly-update' && (github.event.head_commit.author.name == 'fmway' || (github.event_name == 'schedule' && github.event.schedule == '0 0,6,12,18 * * *') || github.event_name == 'workflow_dispatch') }}
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         ref: ${{ github.head_ref }}
     - name: Setup git
