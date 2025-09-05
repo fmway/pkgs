@@ -47,10 +47,10 @@ in {
   };
   stayfree = buildFirefoxXpiAddon {
     pname = "stayfree";
-    version = "2.4.0";
+    version = "2.4.1";
     addonId = "{30b15d56-b2fa-4cb2-98fd-7b5e26306483}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4564681/stayfree-2.4.0.xpi";
-    sha256 = "8f1be58c34286eae353e7e0d63fbb538bb373b7088dc19cc4a85ef3648fcd429";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4570458/stayfree-2.4.1.xpi";
+    sha256 = "12b1b892a218701eb5b1e0083ae0eacf8c37ab484c473dd0473b1c2d3023996b";
     meta = {
       homepage = "https://stayfreeapps.com/";
       mozPermissions = [
@@ -103,15 +103,19 @@ in {
   };
   preact-devtools = buildFirefoxXpiAddon {
     pname = "preact-devtools";
-    version = "7.7.7";
-    addonId = "{5caff8cc-3d2e-4110-a88a-003cc85b3858}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4508409/vue_js_devtools-7.7.7.xpi";
-    sha256 = "5672cd0d3298fa57f2f51e4644011e4152e6e291f6f338601495dd8037331169";
+    version = "6.1.1";
+    addonId = "@react-devtools";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4432990/react_devtools-6.1.1.xpi";
+    sha256 = "b2d69e220402bd6b8bc7d833948915b1d6dcabb453a1d50872a3db860fd92c46";
     meta = {
-      homepage = "https://devtools.vuejs.org";
+      homepage = "https://github.com/facebook/react";
       mozPermissions = [
-        "<all_urls>"
+        "scripting"
+        "storage"
+        "tabs"
+        "clipboardWrite"
         "devtools"
+        "<all_urls>"
       ];
       # todo
       licenses = with lib.licenses; [];
