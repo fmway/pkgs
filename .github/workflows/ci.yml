@@ -34,7 +34,7 @@ jobs:
         name: fmcachix
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
         skipAddingSubstituter: true
-    - run: nix build .#ktechlab
+    - run: nix build .#ktechlab .#qrc
     - run: nix-collect-garbage -d
   xdman:
     # if: "${{ github.event_name == 'pull_request' && github.event.head_commit.author.name != 'xdman_bot' }}"
