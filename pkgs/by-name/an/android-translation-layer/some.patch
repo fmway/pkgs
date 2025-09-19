@@ -1,0 +1,86 @@
+diff '--color=auto' -u --recursive a/meson.build b/meson.build
+--- a/meson.build	
++++ b/meson.build	
+@@ -22,6 +22,8 @@
+   bootclasspath_dir = '/usr/local' / get_option('libdir') / 'java'
+ elif fs.is_file(get_option('prefix') / get_option('libdir') / 'java/core-all_classes.jar')
+   bootclasspath_dir = get_option('prefix') / get_option('libdir') / 'java'
++elif fs.is_file('@lib-art-standalone@' / 'java/core-all_classes.jar')
++  bootclasspath_dir = '@lib-art-standalone@' / 'java'
+ else
+   error('bootclasspath "core-all_classes.jar" not found')
+ endif
+diff '--color=auto' -u --recursive a/src/api-impl-jni/app/android_app_NotificationManager.c b/src/api-impl-jni/app/android_app_NotificationManager.c
+--- a/src/api-impl-jni/app/android_app_NotificationManager.c	
++++ b/src/api-impl-jni/app/android_app_NotificationManager.c	
+@@ -1,5 +1,5 @@
+ #include <gtk/gtk.h>
+-#include <gio/gdesktopappinfo.h>
++#include <gio-unix-2.0/gio/gdesktopappinfo.h>
+ 
+ #include "../defines.h"
+ #include "../util.h"
+diff '--color=auto' -u --recursive a/src/api-impl-jni/widgets/android_webkit_WebView.c b/src/api-impl-jni/widgets/android_webkit_WebView.c
+--- a/src/api-impl-jni/widgets/android_webkit_WebView.c	
++++ b/src/api-impl-jni/widgets/android_webkit_WebView.c	
+@@ -1,6 +1,6 @@
+ #include <gtk/gtk.h>
+ #include <webkit/webkit.h>
+-#include <gio/gunixinputstream.h>
++#include <gio-unix-2.0/gio/gunixinputstream.h>
+ 
+ #include <androidfw/androidfw_c_api.h>
+ 
+diff '--color=auto' -u --recursive a/src/main-executable/main.c b/src/main-executable/main.c
+--- a/src/main-executable/main.c	
++++ b/src/main-executable/main.c	
+@@ -20,6 +20,7 @@
+ #include <locale.h>
+ #include <stdio.h>
+ #include <sys/stat.h>
++#include <unistd.h>
+ 
+ #ifndef DEFFILEMODE
+ #define DEFFILEMODE (S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH) /* 0666*/
+@@ -194,7 +195,7 @@
+ // this is exported by the shim bionic linker
+ void dl_parse_library_path(const char *path, char *delim);
+ 
+-#define REL_DEX_INSTALL_PATH              "/../java/dex"
++#define REL_DEX_INSTALL_PATH              "/../lib/java/dex"
+ 
+ #define REL_API_IMPL_JAR_INSTALL_PATH     "/android_translation_layer/api-impl.jar"
+ #define REL_TEST_RUNNER_JAR_INSTALL_PATH  "/android_translation_layer/test_runner.jar"
+@@ -314,22 +315,15 @@
+ 		exit(1);
+ 	}
+ 
+-	Dl_info libart_so_dl_info;
+-	// JNI_CreateJavaVM chosen arbitrarily, what matters is that it's a symbol exported by by libart.so
+-	// TODO: we shouldn't necessarily count on art being installed in the same prefix as we are
+-	dladdr(JNI_CreateJavaVM, &libart_so_dl_info);
+-	// make sure we didn't get NULL
+-	if (libart_so_dl_info.dli_fname) {
+-		// it's simpler if we can modify the string, so strdup it
+-		char *libart_so_full_path = strdup(libart_so_dl_info.dli_fname);
+-		*strrchr(libart_so_full_path, '/') = '\0'; // now we should have something like /usr/lib64/art
+-		dex_install_dir = malloc(strlen(libart_so_full_path) + strlen(REL_DEX_INSTALL_PATH) + 1); // +1 for NULL
+-		strcpy(dex_install_dir, libart_so_full_path);
+-		strcat(dex_install_dir, REL_DEX_INSTALL_PATH);
+-		free(libart_so_full_path);
+-	} else {
+-		dex_install_dir = "DIDN'T_GET_SO_PATH_WITH_dladdr_SUS"; // in case we print this as part of some other error, it should be clear what the real cause is
+-	}
++  char *main_full_path = NULL;
++  size_t size = 256;
++  main_full_path = (char*)malloc(size);
++  ssize_t len = readlink("/proc/self/exe", main_full_path, size);
++  *strrchr(main_full_path, '/') = '\0'; // now we should have something like /nix/storexxx..../bin
++  dex_install_dir = malloc(strlen(main_full_path) + strlen(REL_DEX_INSTALL_PATH) + 1); // +1 for NULL
++  strcpy(dex_install_dir, main_full_path);
++  strcat(dex_install_dir, REL_DEX_INSTALL_PATH);
++  free(main_full_path);
+ 
+ 	char *app_data_dir_base = getenv("ANDROID_APP_DATA_DIR");
+ 	if (!app_data_dir_base) {
+
