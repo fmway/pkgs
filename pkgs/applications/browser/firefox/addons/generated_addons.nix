@@ -47,10 +47,10 @@ in {
   };
   stayfree = buildFirefoxXpiAddon {
     pname = "stayfree";
-    version = "2.4.4";
+    version = "2.4.5";
     addonId = "{30b15d56-b2fa-4cb2-98fd-7b5e26306483}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4579565/stayfree-2.4.4.xpi";
-    sha256 = "c85f725ace3fd1ca6ab76656e377fb0662ce86a48187d07bcc153ef5e9e53de2";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4584439/stayfree-2.4.5.xpi";
+    sha256 = "dee1b6bc417d89029db71828006bba093fc854195425c8b52fde656125ab111d";
     meta = {
       homepage = "https://stayfreeapps.com/";
       mozPermissions = [
@@ -144,10 +144,10 @@ in {
   };
   firefoxpwa = buildFirefoxXpiAddon {
     pname = "firefoxpwa";
-    version = "2.15.0";
+    version = "2.16.0";
     addonId = "firefoxpwa@filips.si";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4537285/pwas_for_firefox-2.15.0.xpi";
-    sha256 = "75dda1bfd5b4737210c7bec1949de939e1c8f3f5d0ac4f196c0d8fd24d9657ce";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4577733/pwas_for_firefox-2.16.0.xpi";
+    sha256 = "241a538c93dc5e1eb3b5982c44df546a8755f315a6338bf2a68cf4cfc30915e2";
     meta = {
       homepage = "https://github.com/filips123/PWAsForFirefox";
       mozPermissions = [
