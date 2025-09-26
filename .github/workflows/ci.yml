@@ -65,7 +65,7 @@ jobs:
     - env:
         NIXPKGS_ALLOW_INSECURE: 1
       run: |
-        ./result /home/runner/work/pkgs/pkgs/pkgs/by-name/xd/xdman/deps.nix
+        ./result /home/runner/work/pkgs/pkgs/pkgs/by-name/xd/xdman/deps.json
         unlink result
     - name: Commit
       run: |

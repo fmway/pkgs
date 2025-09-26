@@ -59,7 +59,7 @@ buildDotnetModule rec {
     cp $out/lib/${pname}/chrome-extension/* $out/share/${pname}/chrome-extension/
   '';
 
-  nugetDeps = ./deps.nix;
+  nugetDeps = ./deps.json;
 
   meta = with lib; {
     description = "Powerful download accelerator and video downloader";
