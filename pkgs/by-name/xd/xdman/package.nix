@@ -6,7 +6,7 @@
 , dotnetCorePackages
 , makeDesktopItem
 , copyDesktopItems
-, wrapGAppsHook
+, wrapGAppsHook3
 , ... }:
 buildDotnetModule rec {
   pname = "xdman";
@@ -31,7 +31,7 @@ buildDotnetModule rec {
 
   nativeBuildInputs = [
     copyDesktopItems
-    wrapGAppsHook
+    wrapGAppsHook3
   ];
 
   desktopItems = [

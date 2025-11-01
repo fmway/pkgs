@@ -3,7 +3,7 @@
 , lib
 , dpkg
 , pkgs
-, wrapGAppsHook
+, wrapGAppsHook3
 , ... }: let
   pname = "voiden";
   version = "0.9.31";
@@ -64,7 +64,7 @@ in stdenv.mkDerivation {
   '';
 
   nativeBuildInputs = [
-    wrapGAppsHook
+    wrapGAppsHook3
   ];
   buildInputs = [
     dpkg
