@@ -1,7 +1,7 @@
 {
   description = "My Awkward nix package";
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   };
   outputs = { self, nixpkgs, ... } @ inputs: let
     systems = [ "aarch64-linux" "x86_64-linux" ];

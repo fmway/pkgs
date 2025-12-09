@@ -124,7 +124,7 @@ jobs:
         extra-conf: ${{ env.nix-conf }}
     - name: update lockfile
       run: |
-        nix run --impure --expr 'let pkgs = (builtins.getFlake "nixpkgs").legacyPackages.${builtins.currentSystem}; in pkgs.callPackage .github/workflows/nix-flake-update.nix {}'
+        nix flake update
     - name: Check Updates
       id: check
       env:
