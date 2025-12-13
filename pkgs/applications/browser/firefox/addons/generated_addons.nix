@@ -124,10 +124,10 @@ in {
   };
   allow-right-click = buildFirefoxXpiAddon {
     pname = "allow-right-click";
-    version = "0.6.6";
+    version = "0.6.7";
     addonId = "{278b0ae0-da9d-4cc6-be81-5aa7f3202672}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4555366/re_enable_right_click-0.6.6.xpi";
-    sha256 = "49263636914d03aad975453667caee0f61a7339e27a7d63edc67f4bf7f88efcb";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4638479/re_enable_right_click-0.6.7.xpi";
+    sha256 = "092613e14b4b312cf07d791804b1fabce138ac30b7976f6b810b3200fd4627ed";
     meta = {
       homepage = "https://webextension.org/listing/allow-right-click.html";
       mozPermissions = [
