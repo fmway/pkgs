@@ -47,10 +47,10 @@ in {
   };
   stayfree = buildFirefoxXpiAddon {
     pname = "stayfree";
-    version = "2.5.0";
+    version = "2.5.1";
     addonId = "{30b15d56-b2fa-4cb2-98fd-7b5e26306483}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4631069/stayfree-2.5.0.xpi";
-    sha256 = "f5da28a748ded2e01a18c0548b716030c2791f761c00f38f937d6dfda56a0084";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4651565/stayfree-2.5.1.xpi";
+    sha256 = "79621118fa49137c0e8bfb400f198d1d1a69b767fcbb4296789c5f52ac1f6337";
     meta = {
       homepage = "https://stayfreeapps.com/";
       mozPermissions = [
