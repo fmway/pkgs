@@ -47,10 +47,10 @@ in {
   };
   stayfree = buildFirefoxXpiAddon {
     pname = "stayfree";
-    version = "2.5.1";
+    version = "2.5.2";
     addonId = "{30b15d56-b2fa-4cb2-98fd-7b5e26306483}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4651565/stayfree-2.5.1.xpi";
-    sha256 = "79621118fa49137c0e8bfb400f198d1d1a69b767fcbb4296789c5f52ac1f6337";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4663562/stayfree-2.5.2.xpi";
+    sha256 = "91006c272c2420fb32324d15064f79f0b0cdfe7e5ead68a7ce5890221c4153ce";
     meta = {
       homepage = "https://stayfreeapps.com/";
       mozPermissions = [
@@ -124,10 +124,10 @@ in {
   };
   allow-right-click = buildFirefoxXpiAddon {
     pname = "allow-right-click";
-    version = "0.6.7";
+    version = "0.6.8";
     addonId = "{278b0ae0-da9d-4cc6-be81-5aa7f3202672}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4638479/re_enable_right_click-0.6.7.xpi";
-    sha256 = "092613e14b4b312cf07d791804b1fabce138ac30b7976f6b810b3200fd4627ed";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4656718/re_enable_right_click-0.6.8.xpi";
+    sha256 = "7787d3d0ea2fd120568e500e67e932c65ab0f8e33a5f68a74eb408524f82d286";
     meta = {
       homepage = "https://webextension.org/listing/allow-right-click.html";
       mozPermissions = [
@@ -144,10 +144,10 @@ in {
   };
   firefoxpwa = buildFirefoxXpiAddon {
     pname = "firefoxpwa";
-    version = "2.17.2";
+    version = "2.18.0";
     addonId = "firefoxpwa@filips.si";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4606235/pwas_for_firefox-2.17.2.xpi";
-    sha256 = "08ef4240f769f10f81bc846128032b435666ee8b6bcf62f2c736e25ea22dcf05";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4652385/pwas_for_firefox-2.18.0.xpi";
+    sha256 = "b5553ba67b6f1bb72e15156e41c27d19b1713111c0a1aa5b2258a652b6a0c854";
     meta = {
       homepage = "https://github.com/filips123/PWAsForFirefox";
       mozPermissions = [
