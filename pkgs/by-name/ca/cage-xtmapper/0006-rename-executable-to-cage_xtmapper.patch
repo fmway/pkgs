@@ -1,0 +1,12 @@
+diff --git a/meson.build b/meson.build
+--- a/meson.build
++++ b/meson.build
+@@ -137,7 +137,7 @@
+ endif
+ 
+ executable(
+-  meson.project_name(),
++  'cage_xtmapper',
+   cage_sources + cage_headers,
+   dependencies: [
+     server_protos,

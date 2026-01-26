@@ -1,0 +1,20 @@
+diff '--color=auto' -u --recursive a/cage.c b/cage.c
+--- a/cage.c
++++ b/cage.c
+@@ -6,7 +6,7 @@
+  * See the LICENSE file accompanying this file.
+  */
+ 
+-#define _POSIX_C_SOURCE 200112L
++#define _GNU_SOURCE
+ 
+ #include "config.h"
+ 
+@@ -157,6 +157,7 @@
+ 	*sigchld_source = wl_event_loop_add_fd(event_loop, fd[0], mask, sigchld_handler, server);
+ 
+ 	wlr_log(WLR_DEBUG, "Child process created with pid %d", pid);
++	setlinebuf(stdout);
+ 	return true;
+ }
+ 

@@ -1,51 +1,47 @@
-{ buildFHSEnv
-, pkgs
-, ...
-}: let
-  name = "cage_xtmapper";
+{ lib , cage , fetchurl , pkgs }: let
+  pname = "cage_xtmapper";
   version = "0.2.0";
-  source = pkgs.stdenv.mkDerivation {
-    name = "${name}-source";
-    src = pkgs.fetchurl {
-      url = "https://github.com/Xtr126/cage-xtmapper/releases/latest/download/cage-xtmapper-v${version}.tar";
-      hash = "sha256-B/XmuX/4ZmATCZgEbFOzSMYO63/SE5T/nPMuadqO9z0=";
-    };
-    installPhase = ''
-      runHook preInstall
-      mkdir -p $out
-      cp -r local/* $out/
-      runHook postInstall
-    '';
-  };
-  wrapped = buildFHSEnv {
-    inherit name;
-    runScript = "${source}/bin/${name}";
-    targetPkgs = pkgs: with pkgs; [
-      bash
-      coreutils
-    ];
-    multiPkgs = pkgs: with pkgs; [
-      wayland
-      glibc
-      libxcrypt
-      libGL
 
-      libdrm
-      libgbm
-      seatd
-      udev
-      vulkan-loader
-      libudev0-shim
-      xorg.libxcb
-      xorg.xcbutilrenderutil
-      pixman
-      libxkbcommon
-    ];
+  script = fetchurl {
+    url = "https://raw.githubusercontent.com/Xtr126/cage-xtmapper/refs/heads/v${version}/cage_xtmapper.sh";
+    hash = "sha256-af2G1eeEXIKFxQHzOH0XPVUQ34mWBrd2Q/IlmmDUZPc=";
   };
-in source.overrideAttrs {
-  postInstall = ''
-    rm $out/bin/${name}
-    install -m755 ${wrapped}/bin/${name} $out/bin/${name}
-    substituteInPlace $out/bin/${name}.sh --replace ${name} $out/bin/${name}
+  
+  scanPatches = dir:
+    map (x:
+        "${dir}/${x}"
+      ) (builtins.attrNames (lib.filterAttrs (k: _: lib.hasSuffix ".patch" k) (builtins.readDir "${dir}")));
+
+  cageFixDep = cage.override (old: {
+    wlroots_0_19 = old.wlroots_0_19.overrideAttrs (o: {
+      patches = o.patches or [] ++ scanPatches ./wlroots_patches;
+      enableXWayland = false;
+    });
+  });
+
+in cageFixDep.overrideAttrs (finalAttrs: prevAttrs: {
+  inherit pname version;
+
+  patches = prevAttrs.patches ++ scanPatches ./.;
+  src = cage.src;
+
+  mesonFlags = [
+    "-Dman-pages=disabled"
+  ];
+
+  fixupPhase = ''
+    install -m755 ${script} $out/bin/$pname.sh
+    substituteInPlace $out/bin/$pname.sh \
+      --replace $pname $out/bin/$pname \
+      --replace '#!/bin/bash' '#!${lib.getExe pkgs.bash}'
   '';
-}
+
+  meta = {
+    description = "xtmapper wrapper for waydroid";
+    homepage = "https://github.com/Xtr126/cage-xtmapper";
+    license = lib.licenses.mit;
+    maintainers = with lib.maintainers; [ ];
+    mainProgram = "cage_xtmapper.sh";
+    platforms = lib.platforms.all;
+  };
+})

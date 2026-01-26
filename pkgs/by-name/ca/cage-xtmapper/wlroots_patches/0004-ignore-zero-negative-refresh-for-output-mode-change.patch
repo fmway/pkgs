@@ -1,0 +1,12 @@
+diff '--color=auto' -u --recursive a/types/output/output.c b/types/output/output.c
+--- a/types/output/output.c
++++ b/types/output/output.c
+@@ -297,7 +297,7 @@
+ 			output->width = width;
+ 			output->height = height;
+ 
+-			output->refresh = refresh;
++			if (refresh > 0) output->refresh = refresh;
+ 
+ 			if (output->swapchain != NULL &&
+ 					(output->swapchain->width != output->width ||
