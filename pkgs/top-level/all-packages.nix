@@ -1,6 +1,5 @@
 { pkgs ? import <nixpkgs> {}, ... }:
 with pkgs; import ./by-name.nix { inherit pkgs; } // {
-  wden = callPackage ../applications/auth/wden/package.nix {};
   eth-wake = callPackage ../applications/lsp/eth-wake/package.nix {};
   firefox-addons = callPackage ../applications/browser/firefox/addons {};
   mpv-scripts = callPackage ./mpv-packages.nix {};
@@ -9,4 +8,6 @@ with pkgs; import ./by-name.nix { inherit pkgs; } // {
   updater = {
     firefox-addons = callPackage ../applications/browser/firefox/addons/firefoxAddonsUpdater.nix {};
   };
+  waydroid-su = callPackage ../applications/privileges/waydroid-su/package.nix {};
+  wden = callPackage ../applications/auth/wden/package.nix {};
 }
