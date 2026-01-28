@@ -22,12 +22,10 @@
     packages = eachSystem (system: let
       pkgs = import nixpkgs {
         inherit system config;
+        overlays = [ self.overlays.default ];
       };
-    in import ./pkgs/top-level { inherit pkgs; });
-    overlays.default = self: super: {
-      fmpkgs = nixpkgs.lib.warn "Use pkgs.fmway instead" self.fmway;
-      fmway = inputs.self.packages.${self.system};
-    };
+    in pkgs.fmway);
+    overlays.default = import ./overlay.nix;
     nixosModules.default = module;
     homeManagerModules.default = module;
   };

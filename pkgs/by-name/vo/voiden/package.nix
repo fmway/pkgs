@@ -9,11 +9,11 @@
   version = "0.9.31";
   hash = {
     "x86_64-linux" = "sha256-mUZb6DJvmqkIAbyT5LFwHX+AUS3LXL2ovaODbC6SCEU=";
-  }."${stdenv.system}";
+  }."${stdenv.hostPlatform.system}";
 
   arch = {
     "x86_64-linux" = "amd64";
-  }."${stdenv.system}";
+  }."${stdenv.hostPlatform.system}";
 
   
   libPath = lib.makeLibraryPath ((with pkgs; [
