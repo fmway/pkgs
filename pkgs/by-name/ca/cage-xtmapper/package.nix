@@ -4,7 +4,7 @@
 
   script = fetchurl {
     url = "https://raw.githubusercontent.com/Xtr126/cage-xtmapper/refs/heads/v${version}/cage_xtmapper.sh";
-    hash = "sha256-af2G1eeEXIKFxQHzOH0XPVUQ34mWBrd2Q/IlmmDUZPc=";
+    hash = "sha256-VMVKYCoPQQZ/1AQ6QGDEeOjy2kiT+clmo7RCcWhUpyA=";
   };
   
   scanPatches = dir:
