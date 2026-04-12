@@ -47,10 +47,10 @@ in {
   };
   stayfree = buildFirefoxXpiAddon {
     pname = "stayfree";
-    version = "2.5.9";
+    version = "2.6.0";
     addonId = "{30b15d56-b2fa-4cb2-98fd-7b5e26306483}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4736963/stayfree-2.5.9.xpi";
-    sha256 = "a1f6afd24224dbbcb4b5349b5fddf23362d1b5c727b0ad24e4ca79c80d3f94dc";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4761719/stayfree-2.6.0.xpi";
+    sha256 = "819ff9da957f984ef463f5ee24942696cce9af532ba3010e5f7131d990b7fb60";
     meta = {
       homepage = "https://stayfreeapps.com/";
       mozPermissions = [
@@ -72,6 +72,7 @@ in {
         "*://*.tiktok.com/*"
         "*://*.x.com/*"
         "*://*.youtube.com/*"
+        "https://stayfreeapps.com/extension/setting-up*"
       ];
       # todo
       licenses = with lib.licenses; [];
@@ -144,10 +145,10 @@ in {
   };
   firefoxpwa = buildFirefoxXpiAddon {
     pname = "firefoxpwa";
-    version = "2.18.0";
+    version = "2.18.2";
     addonId = "firefoxpwa@filips.si";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4652385/pwas_for_firefox-2.18.0.xpi";
-    sha256 = "b5553ba67b6f1bb72e15156e41c27d19b1713111c0a1aa5b2258a652b6a0c854";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4734250/pwas_for_firefox-2.18.2.xpi";
+    sha256 = "82634c7d33fdf4e9b3785cb461d4eca9c8d01138bd1b1b68e42988ac7716720b";
     meta = {
       homepage = "https://github.com/filips123/PWAsForFirefox";
       mozPermissions = [
